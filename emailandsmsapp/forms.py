@@ -1,9 +1,8 @@
 from django import forms
-class RegForm(forms.Form):
-    FirstName=forms.CharField(max_length=10)
-    LastName=forms.CharField(max_length=10)
-    UserName=forms.CharField(max_length=10)
-    Password=forms.CharField(max_length=10,widget=forms.PasswordInput())
-    CPassword=forms.CharField(max_length=10,widget=forms.PasswordInput())
-    Emailid=forms.EmailField()
-    MobileNo=forms.CharField(max_length=13)
+from .models import RegModel
+class RegForm(forms.ModelForm):
+    class Meta:
+        model=RegModel
+        fields=['Fname','Lname','Uname','Password','Cpassword','Email','Mobno']
+        widgets={'Password':forms.PasswordInput(),
+                 'Cpassword':forms.PasswordInput()}
